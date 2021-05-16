@@ -61,7 +61,7 @@ E2 = ½ * (t2 - a_o2)2
 E_TOTAL = E1 + E2		
 ```
 ### Step 2 : Calculating Partial Derivatives
-Now that we've sorted our our calculations for forward propagation, let's jump to updation of weights (This is where things will get interesting !)
+Now that we've sorted our our calculations for forward propagation, let's jump to updation of weights (This is where things get interesting !)
 
 In order to calculate updated weights, it's important to know the concept of [partial derivatives](https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/partial-derivative-and-gradient-articles/a/introduction-to-partial-derivatives)
 
