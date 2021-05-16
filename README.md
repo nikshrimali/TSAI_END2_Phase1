@@ -75,7 +75,7 @@ In order to calculate updated weights, it's important to know the concept of [pa
 =>  [(a_o1 - t1)* a_o1 * (1-a_o1) * w5 + (a_o2 - t2)* a_o2 * (1-a_o2) * w7] * [a_h1 * (1 - a_h1) * i1]
 ```
 
-Please refer to the excel file in more detailed calculations **
+Please refer to the [excel file](https://github.com/nikshrimali/TSAI_END2_Phase1/blob/Assignment2-BackPropagation/Back%20Propagation%20Calculation.xlsx) in more detailed calculations
 
 Similarly, we can calculate partial derivative of total loss wrt to each of the weight
 
