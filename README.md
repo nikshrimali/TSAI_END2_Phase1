@@ -30,7 +30,7 @@ The excel sheet uploaded in the repository contains in-depth calculations for le
 Total loss vs iterations
 
 ![Back Propagation Calculation](assets/calc_back_prop.png)
-Calculation for Back Propagation for η 0.5
+Calculation for Back Propagation for η = 0.5
 
 
 ## Explaination
