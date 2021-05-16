@@ -12,7 +12,7 @@ Rewrite the whole excel sheet showing backpropagation. Explain each major step, 
 
 ## Mini Neural Network
 ![Mini Neural Network](assets/mini_model_diagram.png)
-<center>This is our mini model !</center>
+This is our mini model !
 
 ### Key Features
 It's a mini neural network, which
@@ -28,15 +28,43 @@ The excel sheet uploaded in the repository contains in-depth calculations for le
 <br>
 
 ![Total loss vs Iterations](assets/lr_loss_vs_iterations.png)
-<center>Total loss vs iterations</center> 
+Total loss vs iterations
 <br><br>
 
 ![Back Propagation Calculation](assets/calc_back_prop.png)
-<center>Calculation for Back Propagation</center> 
+Calculation for Back Propagation
 
 
 ## Explaination
+Before we can start with training of our mini model, it is important to get the forward propagation calculations sorted out. Then we can jump to back propagation !
+```
+i1, i2              : Inputs
+o1, o2              : Outputs
+h1, h2              : Neurons
+a_h1, a_h2          : Activated Neurons (Neurons passed from activation function)
+a_o1, a_o2          : Activated Outputs (Outputs passed from activation function)
+w1, w2, .... , w8   : Weights
 
+======= Calculations for forward Propagation =======
+h1 = i1 * w1 + i2 * w2		
+h2 = i1 * w3 + i2 * w4		
+a_h1 = σ(h1)		
+a_h2 = σ(h2)		
+o1 = a_h1 * w5 + a_h2* w6		
+o2 = a_h1 * w7 + a_h2* w8		
+a_o1 = σ(o1) => 1/(1+exp(-o1))		
+a_o2 = σ(o2)		
+E1 = ½ * (t1 - a_o1)2		
+E2 = ½ * (t2 - a_o2)2		
+E_TOTAL = E1 + E2		
+======= End of forward propagation calculation =======
+
+Now that we've sorted our our calculations for forward propagation, let's jump to updation of weights (This is where things will get interesting !)
+
+In order to calculate updated weights, it's important to know the concept of partial derivatives
+
+
+```	
 
 
 ## What's next
