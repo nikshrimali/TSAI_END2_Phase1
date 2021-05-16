@@ -25,14 +25,12 @@ It's a mini neural network, which
 
 ## Results
 The excel sheet uploaded in the repository contains in-depth calculations for learning rates 0.1, 0.2, 0.5, 0.8, 1.0, 2.0.
-<br>
 
 ![Total loss vs Iterations](assets/lr_loss_vs_iterations.png)
 Total loss vs iterations
-<br><br>
 
 ![Back Propagation Calculation](assets/calc_back_prop.png)
-Calculation for Back Propagation
+Calculation for Back Propagation for η 0.5
 
 
 ## Explaination
