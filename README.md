@@ -1,6 +1,6 @@
 # Assignment 2 - Back Propagation
 
-> Submitted by Naman Shrimali
+> Submitted by Nikhil Shrimali
 
 ## Target
 Rewrite the whole excel sheet showing backpropagation. Explain each major step, and write it on Github. 
