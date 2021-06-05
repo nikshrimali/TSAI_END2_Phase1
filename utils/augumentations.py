@@ -22,11 +22,12 @@ def random_swap(sentence, n=5):
         sentence[idx1], sentence[idx2] = sentence[idx2], sentence[idx1] 
     return sentence
 
-def random_deletion(words, p=0.5): 
+def random_deletion(words, p=0.2): 
     if len(words) == 1: # return if single word
         return words
     remaining = list(filter(lambda x: random.uniform(0,1) > p,words)) 
     if len(remaining) == 0: # if not left, sample a random word
-        return [random.choice(words)] 
+        converted_list =  [random.choice(words)]
+        return "".join(map(str, converted_list))
     else:
-        return remaining
+        return "".join(map(str, remaining))
