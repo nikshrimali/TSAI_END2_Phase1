@@ -39,7 +39,7 @@ Note : I modified the train csv file from google sheets to perform back translat
 
 google_new_transError: 429 (Too Many Requests) from TTS API. Probable cause: Unknown
 ```
-
+You can find the augmented [training dataset](data\stt_train_with_aug.csv), [testing dataset](data\test.csv) and [validation dataset](data\validate.csv) inside the [data folder](data) in this repo
 
 ## Model
 I've used an LSTM layer, with following parameters
@@ -72,7 +72,7 @@ classifier(
 * Even after augmenting the dataset and increasing the data nearly `10 folds`, it did not have any affect on the testing accuracy.
 
 ## Results
-Please find below screenshot of the misclassidfied images dataframe and correct classification dataframe saved as csv
+Please find below code and screenshots of the misclassidfied images dataframe and correct classification dataframe saved as csv
 ```python
 validset_iterator = validaion_dataframe.iterrows()
 misclassified = pd.DataFrame(columns=['phrase', 'actual rating', 'predicted'])
@@ -100,9 +100,11 @@ misclassified.to_csv("output/misclassified.csv")
 correct_classified.to_csv("output/correct_classified.csv")
 ```
 ### Misclassified
-![](assets/misclassified.jpg)
+![misclassified dataset](assets/misclassified.jpg)
 ### Correct classified
-![](assets/correct_classified.jpg)
+![correct classified dataset](assets/correct_classified.jpg)
+
+You can find the [misclassified dataset](output\misclassified.csv) and [correct classified](output\correct_classified.csv) inside the [output folder](output)
 
 ## Conclusion
 As you can see, the model learnt predicting everything as either very negative, negative or at best neutral, and thus achieved petty 30% testing accuracy. This model might represent the world view of a very famous person whose name rhymes with Purnub Coswami
