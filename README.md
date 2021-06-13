@@ -535,6 +535,7 @@ Cleaned tweet : obama and the democrats shocked by constitutional restraint URL 
 
 Prediction: Positive	Actual: Positive
 ```
+Refer [Inferencing notebook](inferencing.ipynb) for more info !
 
 ## "The Actual Assignment"
 ```
