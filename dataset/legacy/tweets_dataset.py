@@ -1,6 +1,5 @@
-from torch.utils.data import Dataset
 import pandas as pd
-from utils.augmentations import apply_augmentations, processTweet
+from utils.augmentations import processTweet
 from torchtext.legacy import data
 import torchtext
 import random
