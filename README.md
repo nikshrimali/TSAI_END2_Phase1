@@ -44,8 +44,8 @@ Few examples from train.en file (as name suggests, train data for english `en` l
 We'll be training our network to convert german sentences to english.
 
 Legacy implementation: 
-```python
-# from torchtext.legacy.datasets import Multi30k
+```
+from torchtext.legacy.datasets import Multi30k
 ```
 
 New implementation:
