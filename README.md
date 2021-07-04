@@ -56,7 +56,7 @@ from torchtext.datasets import Multi30k
 
 ## Tokenization and Vocabulary
 ### Legacy implementation : 
-```python
+```
 # importing
 from torchtext.legacy.data import Field, BucketIterator
 
