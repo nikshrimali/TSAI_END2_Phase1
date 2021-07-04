@@ -48,7 +48,7 @@ We'll be training our network to convert german sentences to english.
 from torchtext.legacy.datasets import Multi30k
 ```
 
-New implementation:
+### That's how we do it now:
 ```python
 from torchtext.datasets import Multi30k
 ```
