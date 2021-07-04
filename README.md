@@ -43,7 +43,7 @@ Few examples from train.en file (as name suggests, train data for english `en` l
 
 We'll be training our network to convert german sentences to english.
 
-Legacy implementation: 
+### Legacy implementation: 
 ```
 from torchtext.legacy.datasets import Multi30k
 ```
@@ -142,7 +142,7 @@ train_iterator, test_iterator = BucketIterator.splits(
 
 ### Latest implementation : 
 
-```
+```python
 train_iter = Multi30k(split='train', language_pair=(SRC_LANGUAGE, TGT_LANGUAGE))
 
 test_iter = Multi30k(split='test', language_pair=(SRC_LANGUAGE, TGT_LANGUAGE))
