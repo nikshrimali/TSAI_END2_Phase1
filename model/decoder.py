@@ -1,3 +1,6 @@
+import torch
+import torch.nn as nn
+
 class Decoder(nn.Module):
     def __init__(self, output_dim, emb_dim, enc_hid_dim, dec_hid_dim, dropout, attention):
         super().__init__()
