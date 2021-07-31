@@ -1,2 +1,11 @@
-# TSAI_END2_Phase1
-This repo contains the work I did during "END2.0" course for TSAI
+# Assignment 12 - Dawn of Transformers
+> Submitted by Nikhil Shrimali
+
+## Target
+Take the [code](https://github.com/aladdinpersson/Machine-Learning-Collection/blob/a2ee9271b5280be6994660c7982d0f44c67c3b63/ML/Pytorch/more_advanced/transformer_from_scratch/transformer_from_scratch.py) and make it work with any dataset. Submit the GitHub repo's ReadMe file, where I can see answers to these questions:
+
+* what dataset you have used
+* what problem have you solved (fill in the blank, translation, text generation, etc)
+* the output of your training for 10 epochs
+
+you can work with your existing team, or the new team you are going to make below!
