@@ -9,3 +9,12 @@ Take the [code](https://github.com/aladdinpersson/Machine-Learning-Collection/bl
 * the output of your training for 10 epochs
 
 you can work with your existing team, or the new team you are going to make below!
+
+## Training logs
+```
+Epoch: 1, Train loss: 1.693, Val loss: 0.214, Epoch time = 77.805s
+Epoch: 2, Train loss: 0.106, Val loss: 0.121, Epoch time = 80.665s
+Epoch: 3, Train loss: 0.020, Val loss: 0.109, Epoch time = 80.357s
+Epoch: 4, Train loss: 0.001, Val loss: 0.108, Epoch time = 80.353s
+Epoch: 5, Train loss: 0.001, Val loss: 0.107, Epoch time = 80.169s
+```
