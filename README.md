@@ -32,6 +32,7 @@ class EnsembleTokens(torch.nn.Module):
 
 Example Loss
 ```
+criterion = nn.CosineSimilarity()
 learning_rate = 5e-5
 adam_epsilon=1e-8
 no_decay = ['bias', 'LayerNorm.weight']
