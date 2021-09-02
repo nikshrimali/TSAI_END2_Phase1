@@ -1,6 +1,6 @@
 # END CapStone
 
-# DOR Model
+# DPR Model
 
  - Two huggingface BERT base pretrained models for encoding Question and Answer
  - Cosine similarity loss function
