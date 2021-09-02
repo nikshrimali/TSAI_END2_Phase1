@@ -6,7 +6,7 @@
  - Cosine similarity loss function
 
 
-![alt text](Capstone.jpg)
+![alt text](assets/Capstone.jpg)
 
 
 # Code insight
