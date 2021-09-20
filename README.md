@@ -96,36 +96,63 @@ class EnsembleTokens(torch.nn.Module):
 
 
 ## Inference
+<a href='https://github.com/nikshrimali/TSAI_END2_Phase1/blob/main/Inference.ipynb'>Click here for Colab implementation</a>
 - Question Input is taken from User
-- Input is converted into BERT based encoding
+- Input is converted into BERT based encoding using Pretrained BERT question model
 - BERT based question's context is matched with similar context and top 2 context is retrieved
 - This output is then sent to BART based encoder for retrieval
 
 ### Architecture Diagram
 ![alt text](assets/inference.jpg)
 
-
-# Code insight
-
-Ensemble Model by combining two huggingface model
-
+### Code Insight
 ```
-class EnsembleTokens(torch.nn.Module):
-    def __init__(self):
-        super(EnsembleTokens, self).__init__()
-        self.question_model = BertModel.from_pretrained('bert-base-uncased')
-        self.answer_model = BertModel.from_pretrained('bert-base-uncased')
-    
-    def forward(self, questions, answers):
 
-        question_outputs = self.question_model(**questions)
-        answer_outputs = self.question_model(**answers)
+def inference(question, bart_tokenizer, bart_model):
 
-        return question_outputs, answer_outputs
+    # Get Pretrained BERT encodings
+
+    ge = GetEncodings(type='questions')
+    encoded_question = ge.encode(question, max_length=30)
+
+    # Find top matching documents
+    ss = SearchSimilar(iterator = df_context['context'].values.tolist(), filename='index.bin', embeddings=model_op, shape=768, device=device)
+    similar_contexts = ss.get_n_similar_vectors(encoded_question, 3)
+    similar_contexts.insert(0, question)
+
+    combined_tokens = '</s></s>'.join(similar_contexts)
+
+    print(f'Top similar document outputs is {combined_tokens}')
+
+    # Prepare data for BART Inferencing
+
+    source_encoding = tokenizer(
+            combined_tokens,
+            max_length=1024,
+            padding='max_length',
+            add_special_tokens=True,
+            truncation=True,
+            return_tensors="pt")
+   
+
+    # Inference BART Model
+    output = bart_model(source_encoding['input_ids'].to(device), mode = 'eval')
+    output = tokenizer.decode(output[0])
+    print(output)
+    return output
 ```
+
+
 
 ## Results
-Plots of loss will be udpated soon
+
+Training Loss for BART
+
+![BART Training Loss](assets/BART-loss.png)
+
+Training Loss for BI-Encoders
+
+![Bi-Encoders Training Loss](assets/Biencoder-loss.png)
 
 ## Challenges
 
@@ -134,3 +161,4 @@ Plots of loss will be udpated soon
 - Traing 25k on BART is taking 5.5 hrs for each epoch
 - For inferencing, Loading both BERT Ensemble and BART model on same colab environment is difficult, hence encodings are stored seperately
 - Currently working on a sample data
+- Currently showcased a complete pipeline, model needs to be trained more to show correct outputs
