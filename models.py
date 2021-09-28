@@ -46,22 +46,22 @@ class BARTTrain(torch.nn.Module):
 
         return model_outputs
 
-# def get_latest_checkpoint(checkpoint, model, MODEL_STORE, q_string=''):
+def get_latest_checkpoint(checkpoint, model, MODEL_STORE, q_string=''):
 
-#     checkpoints = sorted(glob.glob(f'{MODEL_STORE}/{checkpoint}*-[0-9]*'))
-#     if len(checkpoints):
-#         global_step = int(checkpoints[0].split('-')[-1])
-#         ckpt_name = '{}-{}'.format(checkpoint, global_step)
-#         print("Loading model from checkpoint %s" % ckpt_name)
+    checkpoints = sorted(glob.glob(f'{MODEL_STORE}/{checkpoint}*-[0-9]*'))
+    if len(checkpoints):
+        global_step = int(checkpoints[0].split('-')[-1])
+        ckpt_name = '{}-{}'.format(checkpoint, global_step)
+        print("Loading model from checkpoint %s" % ckpt_name)
         
-#         PATH = f'{MODEL_STORE}/{ckpt_name}/{checkpoint}{q_string}-{str(global_step)}.pt'
-#         # PATH = f'{MODEL_STORE}/{ckpt_name}/q_checkpoint-{str(global_step-1)}.pt'
-#         model.load_state_dict(torch.load(PATH, map_location=torch.device('cpu')))
-#         print("model successfully loaded %s" % ckpt_name)
+        PATH = f'{MODEL_STORE}/{ckpt_name}/{checkpoint}{q_string}-{str(global_step)}.pt'
+        # PATH = f'{MODEL_STORE}/{ckpt_name}/q_checkpoint-{str(global_step-1)}.pt'
+        model.load_state_dict(torch.load(PATH, map_location=torch.device('cpu')))
+        print("model successfully loaded %s" % ckpt_name)
     
-#     else:
-#         print("No checkpoints available right now")
-#     return model
+    else:
+        print("No checkpoints available right now")
+    return model
 
 class Question_Model(torch.nn.Module):
     def __init__(self):
@@ -104,30 +104,6 @@ class EnsembleTokens(torch.nn.Module):
         if mode == 'inference':
             question_encoded = self.question_model(encoding['input_ids_questions'].to(device), encoding['attention_mask_questions'].to(device))
             return question_encoded
-
-
-
-# Inference
-
-
-
-def get_latest_checkpoint(checkpoint, model, MODEL_STORE, q_string=''):
-
-    checkpoints = sorted(glob.glob(f'{MODEL_STORE}/{checkpoint}*-[0-9]*'))
-    if len(checkpoints):
-        global_step = int(checkpoints[0].split('-')[-1])
-        ckpt_name = '{}-{}'.format(checkpoint, global_step)
-        print("Loading model from checkpoint %s" % ckpt_name)
-        
-        PATH = f'{MODEL_STORE}/{ckpt_name}/{checkpoint}{q_string}-{str(global_step)}.pt'
-        # PATH = f'{MODEL_STORE}/{ckpt_name}/q_checkpoint-{str(global_step-1)}.pt'
-        model.load_state_dict(torch.load(PATH))
-        print("model successfully loaded %s" % ckpt_name)
-    
-    else:
-        print("No checkpoints available right now")
-    return model
-
 
 
 
@@ -187,7 +163,7 @@ class GetEncodings:
                 truncation=True,
                 return_tensors="pt"
             )
-        model_op = self.model(input_ids=tk['input_ids'], attention_mask=tk['attention_mask'])['pooler_output']
+        model_op = self.model(input_ids=tk['input_ids'].to(device), attention_mask=tk['attention_mask'].to(device))['pooler_output']
         return model_op
 
 
