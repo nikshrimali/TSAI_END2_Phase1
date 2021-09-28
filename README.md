@@ -3,7 +3,7 @@ RAG with a Swag!!!
 > Submitted By - Nikhil Shrimali
 
 ## Bi-Encoders Model
-- <a href='https://github.com/nikshrimali/TSAI_END2_Phase1/blob/main/qna_BARTmodel.ipynb'>Click here for Colab implementation</a>
+- <a href='https://github.com/nikshrimali/TSAI_END2_Phase1/blob/main/notebooks/qna_BERT_train.ipynb'>Click here for Colab implementation</a>
  - Two <a href='https://huggingface.co/transformers/model_doc/bert.html'>HuggingFace BERT-base pretrained models</a> for encoding Question and Answer
  - Parameters for Context doucments are freezed
  - Only question models parameters are trained
@@ -19,7 +19,8 @@ RAG with a Swag!!!
 ![alt text](assets/train_biencoders.jpg)
 
 ### Model Code Implemtation
-```class Question_Model(torch.nn.Module):
+```python
+class Question_Model(torch.nn.Module):
     def __init__(self):
         super(Question_Model, self).__init__()
         self.question_model = BertModel.from_pretrained('bert-base-uncased')
@@ -63,7 +64,7 @@ class EnsembleTokens(torch.nn.Module):
 ```
 
 ## BART Model
-- <a href='https://github.com/nikshrimali/TSAI_END2_Phase1/blob/main/qna_BERT_train.ipynb'>Click here for Colab implementation</a>
+- <a href='https://github.com/nikshrimali/TSAI_END2_Phase1/blob/main/notebooks/qna_BARTmodel_train.ipynb'>Click here for Colab implementation</a>
 - <a href='https://huggingface.co/transformers/model_doc/bart.html'>HuggingFace BART model</a> is trained on Questions + 2 Similar Contexts (Cuda out of memory in case of 3 contexts)
 - Custom dataloader pipeline
     - Convert the question sentence to BERT encodings
@@ -74,13 +75,13 @@ class EnsembleTokens(torch.nn.Module):
 ![alt text](assets/train_bart.jpg)
 
 ### Model Code Implemtation
-```class BARTTrain(torch.nn.Module):
+```python
+class BARTTrain(torch.nn.Module):
     def __init__(self):
         super(BARTTrain, self).__init__()
         self.model = BartForConditionalGeneration.from_pretrained('facebook/bart-base')
     
     def forward(self, encodings, mode):
-        print('dvadfdsfds', mode)
         if mode == 'train':
             model_outputs = self.model(
                 input_ids=encodings['input_ids_source_merged'].to(device), 
@@ -96,7 +97,7 @@ class EnsembleTokens(torch.nn.Module):
 
 
 ## Inference
-<a href='https://github.com/nikshrimali/TSAI_END2_Phase1/blob/main/Inference.ipynb'>Click here for Colab implementation</a>
+<a href='https://github.com/nikshrimali/TSAI_END2_Phase1/blob/main/new_inference.ipynb'>Click here for Colab implementation</a>
 - Question Input is taken from User
 - Input is converted into BERT based encoding using Pretrained BERT question model
 - BERT based question's context is matched with similar context and top 2 context is retrieved
@@ -106,7 +107,7 @@ class EnsembleTokens(torch.nn.Module):
 ![alt text](assets/inference.jpg)
 
 ### Code Insight
-```
+```python
 
 def inference(question, bart_tokenizer, bart_model):
 
@@ -148,7 +149,7 @@ def inference(question, bart_tokenizer, bart_model):
 
 Training Loss for BART
 
-![BART Training Loss](assets/BART-loss.png)
+![BART Training Loss](assets/BART_train_loss.png)
 
 Training Loss for BI-Encoders
 

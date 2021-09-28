@@ -1,43 +1,17 @@
 # -*- coding: utf-8 -*-
 
-from utils import get_device, seed_all
-from models import get_latest_checkpoint, GetEncodings, BARTTrain
-
 seed_all()
 device = get_device()
-# Commented out IPython magic to ensure Python compatibility.
-# BERT imports
 
-# % matplotlib inline
-
-import faiss
-
-
-
-
-# specify GPU device
-
-df_context = pd.read_csv('/content/drive/MyDrive/END2_CAPSTONE/context_groups.csv') 
-df_merged = pd.read_csv('/content/drive/MyDrive/END2_CAPSTONE/merged_data.csv')
-model_op = torch.load('/content/drive/MyDrive/END2_CAPSTONE/np_encoded_context.pt')
-
-
-
+from utils import seed_all, get_device
+from models import  GetEncodings, SearchSimilar
+bart_tokenizer
 
 # Inference
-MODEL_STORE = '/content/drive/MyDrive/END2_CAPSTONE'
-
-bart_model = BARTTrain().to(device)
-
-
-
-bart_model = get_latest_checkpoint('checkpoint', bart_model, MODEL_STORE)
-
-def inference(question, bart_tokenizer, bart_model):
+def inference(question, bart_tokenizer, bart_model, df_context, model_op, MODEL_STORE):
 
     # Get Pretrained BERT encodings
-
-    ge = GetEncodings(type='questions')
+    ge = GetEncodings(MODEL_STORE = MODEL_STORE, type='questions')
     encoded_question = ge.encode(question, max_length=30)
 
     # Find top matching documents
@@ -51,7 +25,7 @@ def inference(question, bart_tokenizer, bart_model):
 
     # Prepare data for BART Inferencing
 
-    source_encoding = tokenizer(
+    source_encoding = bart_tokenizer(
             combined_tokens,
             max_length=1024,
             padding='max_length',
@@ -61,14 +35,9 @@ def inference(question, bart_tokenizer, bart_model):
    
 
     # Inference BART Model
-    output = bart_model(source_encoding['input_ids'].to(device), mode = 'eval')
-    output = tokenizer.decode(output[0])
+    output = bart_model(
+            source_encoding['input_ids'].to(device),
+            mode = 'eval')
+    output = bart_tokenizer.decode(output[0])
     print(output)
     return output
-
-tokens = inference('What does torch.cosine loss do in pytorch?', tokenizer, bart_model)
-
-# Loss plots
-
-
-loss_qna = torch.load('/content/drive/MyDrive/END2_CAPSTONE/qna_checkpoint-4000/training_loss.pt')
